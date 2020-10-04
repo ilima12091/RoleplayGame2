@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public class Wizard
+    public class Wizard : ICharacter
     {
         private int health = 100;
 
@@ -15,31 +15,26 @@ namespace RoleplayGame
 
         public Staff Staff { get; set; }
 
-        public int AttackValue
-        {
+        public int Health {             
+            get
+            {
+                return this.health;
+            }
+            set
+            {
+                this.health = value < 0 ? 0 : value;
+            } 
+        }
+        public int AttackValue {
             get
             {
                 return SpellsBook.AttackValue + Staff.AttackValue;
             }
         }
-
-        public int DefenseValue
-        {
+        public int DefenseValue {
             get
             {
                 return SpellsBook.DefenseValue + Staff.DefenseValue;
-            }
-        }
-
-        public int Health
-        {
-            get
-            {
-                return this.health;
-            }
-            private set
-            {
-                this.health = value < 0 ? 0 : value;
             }
         }
 
