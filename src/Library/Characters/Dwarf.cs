@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RoleplayGame
 {
     public class Dwarf : ICharacter
@@ -16,6 +18,7 @@ namespace RoleplayGame
         public Shield Shield { get; set; }
 
         public Helmet Helmet { get; set; }
+        public List<IItem> Items { get; }
 
         public int AttackValue
         {

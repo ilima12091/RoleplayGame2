@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RoleplayGame
 {
     public class Wizard : ICharacter
@@ -14,7 +16,7 @@ namespace RoleplayGame
         public SpellsBook SpellsBook { get; set; }
 
         public Staff Staff { get; set; }
-
+        public List<IItem> Items { get; }
         public int Health {             
             get
             {

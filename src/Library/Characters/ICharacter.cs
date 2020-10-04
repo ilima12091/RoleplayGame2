@@ -8,7 +8,7 @@ namespace RoleplayGame
         string Name { get; set; }
         int AttackValue { get; }
         int DefenseValue { get; }
-        List<IItem> Items { get; };
+        List<IItem> Items { get; }
         void ReceiveAttack(int power);
         void Cure();
     }

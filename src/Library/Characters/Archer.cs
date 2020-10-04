@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace RoleplayGame
 {
     public class Archer : ICharacter
@@ -14,6 +16,7 @@ namespace RoleplayGame
         public Bow Bow { get; set; }
 
         public Helmet Helmet { get; set; }
+        public List<IItem> Items { get; }
 
         public int AttackValue
         {
