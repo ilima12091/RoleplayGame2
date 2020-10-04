@@ -1,21 +1,29 @@
 namespace RoleplayGame
 {
-    public class Staff
+    public class Staff : IItem
     {
         public int AttackValue 
         {
             get
             {
-                return 100;
+                return this.attackValue;
             } 
         }
+        private int attackValue;
+
+        private int defenseValue;
 
         public int DefenseValue
         {
             get
             {
-                return 100;
+                return this.defenseValue;
             }
+        }
+        public Staff(int attack, int defense)
+        {
+            this.attackValue = attack;
+            this.defenseValue = defense;
         }
     }
 }
