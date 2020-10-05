@@ -2,8 +2,10 @@ using System.Collections.Generic;
 
 namespace RoleplayGame
 {
-    /*Esta clase se encarga de llevar una lista de hechizos y agregarlos al Spellbook, en el método AddSpell se aplica el patrón Creator y el principio Expert porque 
-    Spellbook utilzia una lista de Spells lo que la vuelve una experta en crear hechizos*/ 
+    /*
+        Esta clase se encarga de llevar una lista de hechizos y agregarlos al Spellbook, en el método AddSpell se aplica el patrón Creator
+        y el principio Expert porque Spellbook utiliza una lista de Spells lo que la vuelve una experta en crear hechizos.
+    */ 
     public class SpellsBook : IItem
     {
         public List<Spell> Spells { get; set; }
@@ -20,9 +22,6 @@ namespace RoleplayGame
                 return value;
             }
         }
-        private int attackValue;
-
-        private int defenseValue;
 
         public int DefenseValue
         {
@@ -37,10 +36,15 @@ namespace RoleplayGame
             }
         }
 
-        public void AddSpell(int attack, int defense) 
+        public void AddSpell(string name, int attack, int defense) 
         {
-            Spell spell = new Spell(attack, defense);
+            Spell spell = new Spell(name, attack, defense);
             this.Spells.Add(spell);
-        }   
+        }
+
+        public SpellsBook()
+        {
+            this.Spells = new List<Spell>();
+        }
     }
 }

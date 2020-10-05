@@ -9,14 +9,14 @@ namespace RoleplayGame
         public Wizard(string name)
         {
             this.Name = name;
+            this.Items = new List<Item>();        
         }
 
         public string Name { get; set; }
 
         public SpellsBook SpellsBook { get; set; }
 
-        public Staff Staff { get; set; }
-        public List<IItem> Items { get; }
+        public List<Item> Items { get; }
         public int Health {             
             get
             {
@@ -30,13 +30,23 @@ namespace RoleplayGame
         public int AttackValue {
             get
             {
-                return SpellsBook.AttackValue + Staff.AttackValue;
+                int itemsTotalAttack = 0;
+                foreach(Item item in this.Items)
+                {
+                    itemsTotalAttack += item.AttackValue;
+                }
+                return this.SpellsBook.AttackValue + itemsTotalAttack;
             }
         }
         public int DefenseValue {
             get
             {
-                return SpellsBook.DefenseValue + Staff.DefenseValue;
+                int itemsTotalDefense = 0;
+                foreach(Item item in this.Items)
+                {
+                    itemsTotalDefense += item.DefenseValue;
+                }
+                return this.SpellsBook.DefenseValue + itemsTotalDefense;
             }
         }
 
@@ -51,6 +61,23 @@ namespace RoleplayGame
         public void Cure()
         {
             this.Health = 100;
+        }
+
+        public void AddItem(string name, int attackValue, int defenseValue)
+        {
+            Item item = new Item(name, attackValue, defenseValue);
+            this.Items.Add(item);
+        }
+
+        public void RemoveItem(string name)
+        {
+            foreach(Item item in this.Items)
+            {
+                if(item.Name == name)
+                {
+                    this.Items.Remove(item);
+                }
+            }
         }
     }
 }

@@ -9,28 +9,33 @@ namespace RoleplayGame
         public Archer(string name)
         {
             this.Name = name;
+            this.Items = new List<Item>();
         }
 
         public string Name { get; set; }
         
-        public Bow Bow { get; set; }
+        public List<Item> Items { get; }
 
-        public Helmet Helmet { get; set; }
-        public List<IItem> Items { get; }
-
-        public int AttackValue
-        {
+        public int AttackValue {
             get
             {
-                return Bow.AttackValue;
+                int itemsTotalAttack = 0;
+                foreach(Item item in this.Items)
+                {
+                    itemsTotalAttack += item.AttackValue;
+                }
+                return itemsTotalAttack;
             }
         }
-
-        public int DefenseValue
-        {
+        public int DefenseValue {
             get
             {
-                return Helmet.DefenseValue;
+                int itemsTotalDefense = 0;
+                foreach(Item item in this.Items)
+                {
+                    itemsTotalDefense += item.DefenseValue;
+                }
+                return itemsTotalDefense;
             }
         }
 
@@ -57,6 +62,23 @@ namespace RoleplayGame
         public void Cure()
         {
             this.Health = 100;
+        }
+
+        public void AddItem(string name, int attackValue, int defenseValue)
+        {
+            Item item = new Item(name, attackValue, defenseValue);
+            this.Items.Add(item);
+        }
+
+        public void RemoveItem(string name)
+        {
+            foreach(Item item in this.Items)
+            {
+                if(item.Name == name)
+                {
+                    this.Items.Remove(item);
+                }
+            }
         }
     }
 }
